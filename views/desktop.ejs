@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+        <link href="/css/style.css" rel="stylesheet">
+        <script src="/js/script.js" type="text/javascript"></script>
+        <title>Desktop</title>
+    </head>
+    <body>
+
+        <div class="menu">
+            <div onclick="createnewfile()" class="menu-option new-file-option">Create New File</div>
+            <div onclick="createnewfolder()" class="menu-option new-folder-option">Create Folder</div>
+            <div onclick="deleteitem()" class="menu-option delete-option">Delete</div>
+        </div>
+
+            <br>
+            
+        <div class="box">
+        <% for(let i=0 ; i<items.length ; i++){ %>
+            <div class="folder" id="<%= items[i].name %>">
+                <center>
+                <% if(items[i].folder) { %>
+                <img id="<%= items[i].name %>" src="/img/folder.png"/>
+                <% } else {%>
+                <img id="<%= items[i].name %>" src="/img/file.png"/>
+                <% } %>
+                <p id="<%= items[i].name %>" style="text-align:center"><%= items[i].name %></p>
+                </center>
+            </div>
+        <% } %>
+        </div>
+
+        <div onclick="showtrashview()" class="box trash">
+            <div class="folder">
+                <center>
+                    <img src="/img/trash.png"/><br>
+                    <p style="text-align:center">Trash</p>
+                </center>
+            </div>
+        </div>
+        
+        <div class="trashview">
+            <% if(trashitems.length==0){ %>
+                <p style="text-align:center; font-size:2em">No items</p>
+            <% } %>
+            <div onclick="closetrashview()" class="closebutton">X</div>
+            <div class="box trashbox">
+                <% for(let i=0 ; i<trashitems.length ; i++){ %>
+                <div class="folder tfolder" id="<%= trashitems[i].name %>">
+                    <center>
+                    <% if(trashitems[i].folder) { %>
+                    <img id="<%= trashitems[i].name %>" src="/img/folder.png"/><br>
+                    <% } else {%>
+                    <img id="<%= trashitems[i].name %>" src="/img/file.png"/><br>
+                    <% } %>
+                    <p id="<%= trashitems[i].name %>" style="text-align:center"><%= trashitems[i].name %></p>
+                    </center>
+                </div>
+                <% } %>
+            </div>
+        </div>
+
+    </body>
+</html>
